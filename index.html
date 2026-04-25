@@ -6,21 +6,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Laden">
-  <meta name="theme-color" content="#0a0f1e">
-  <title>Laden ⚡</title>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <meta name="apple-mobile-web-app-title" content="Wallbox">
+  <meta name="theme-color" content="#060810">
+  <title>Wallbox</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0a0f1e;
-      --surface: #111827;
-      --surface2: #1a2235;
-      --accent: #00e5ff;
-      --accent2: #7c3aed;
-      --green: #00ff88;
-      --text: #e2e8f0;
-      --muted: #64748b;
-      --border: rgba(0,229,255,0.15);
+      --bg: #060810;
+      --card: #0d1120;
+      --yellow: #f5c400;
+      --text: #f0f4ff;
+      --muted: #4a5568;
+      --border: rgba(245,196,0,0.12);
     }
 
 ```
@@ -29,221 +26,226 @@
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Outfit', sans-serif;
   min-height: 100vh;
   min-height: 100dvh;
-  overflow-x: hidden;
-}
-
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(0,229,255,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,229,255,0.03) 1px, transparent 1px);
-  background-size: 40px 40px;
-  pointer-events: none;
-  z-index: 0;
 }
 
 .app {
-  position: relative;
-  z-index: 1;
-  max-width: 420px;
+  max-width: 390px;
   margin: 0 auto;
-  padding: 0 16px 40px;
+  padding: 0 20px 50px;
 }
 
+/* HEADER */
 header {
-  padding: 52px 0 32px;
+  padding: 56px 0 32px;
+  opacity: 0;
+  animation: fadeUp 0.5s 0.1s forwards;
 }
 
-.header-title {
-  font-family: 'Space Mono', monospace;
+.header-tag {
   font-size: 11px;
-  letter-spacing: 0.2em;
-  color: var(--accent);
-  text-transform: uppercase;
-}
-
-.header-main {
-  font-size: 32px;
   font-weight: 600;
-  line-height: 1.1;
-  margin-top: 4px;
-}
-
-.header-sub {
-  font-size: 14px;
-  color: var(--muted);
-  margin-top: 8px;
-}
-
-.section-label {
-  font-family: 'Space Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.18em;
-  color: var(--muted);
+  letter-spacing: 0.25em;
+  color: var(--yellow);
   text-transform: uppercase;
-  margin-bottom: 12px;
-  padding-left: 2px;
-}
-
-.card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 18px;
-  position: relative;
-  overflow: hidden;
-  margin-bottom: 20px;
-}
-
-.card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--accent), transparent);
-  opacity: 0.4;
-}
-
-.stations-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  margin-bottom: 16px;
-}
-
-.station-btn {
-  background: var(--surface2);
-  border: 1.5px solid var(--border);
-  border-radius: 14px;
-  padding: 20px 8px 16px;
-  cursor: pointer;
-  transition: all 0.15s;
-  text-align: center;
-}
-
-.station-btn:active { transform: scale(0.94); }
-
-.station-btn.copied {
-  border-color: var(--green);
-  background: rgba(0,255,136,0.08);
-}
-
-.station-num {
-  font-family: 'Space Mono', monospace;
-  font-size: 28px;
-  font-weight: 700;
-  color: var(--accent);
-  display: block;
-  line-height: 1;
   margin-bottom: 6px;
 }
 
-.station-label {
-  font-size: 10px;
+.header-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 48px;
+  letter-spacing: 0.04em;
+  color: #fff;
+  line-height: 1;
+}
+
+.header-sub {
+  font-size: 13px;
   color: var(--muted);
-  letter-spacing: 0.1em;
+  margin-top: 6px;
+}
+
+/* LABEL */
+.section-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  opacity: 0;
+  animation: fadeUp 0.5s 0.25s forwards;
+}
+
+/* STATIONS */
+.stations-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.station-btn {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 24px 8px 20px;
+  cursor: pointer;
+  text-align: center;
+  transition: transform 0.12s, border-color 0.2s, background 0.2s;
+  opacity: 0;
+  animation: fadeUp 0.4s forwards;
+}
+
+.station-btn:nth-child(1) { animation-delay: 0.3s; }
+.station-btn:nth-child(2) { animation-delay: 0.35s; }
+.station-btn:nth-child(3) { animation-delay: 0.4s; }
+.station-btn:nth-child(4) { animation-delay: 0.45s; }
+.station-btn:nth-child(5) { animation-delay: 0.5s; }
+.station-btn:nth-child(6) { animation-delay: 0.55s; }
+
+.station-btn:active { transform: scale(0.91); }
+
+.station-btn.copied {
+  border-color: var(--yellow);
+  background: rgba(245,196,0,0.07);
+}
+
+.station-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 46px;
+  line-height: 1;
+  color: var(--text);
+  display: block;
+  transition: color 0.2s;
+}
+
+.station-btn.copied .station-num {
+  color: var(--yellow);
+  text-shadow: 0 0 20px rgba(245,196,0,0.4);
+}
+
+.station-tag {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--muted);
   text-transform: uppercase;
   display: block;
-}
-
-.station-code {
-  font-size: 9px;
-  font-family: 'Space Mono', monospace;
-  color: var(--accent2);
   margin-top: 4px;
-  display: block;
-  opacity: 0.8;
 }
 
-.selected-info {
-  background: rgba(0,229,255,0.06);
-  border: 1px solid rgba(0,229,255,0.2);
-  border-radius: 10px;
-  padding: 12px 16px;
+/* SELECTED BAR */
+.selected-bar {
+  background: var(--card);
+  border: 1px solid rgba(245,196,0,0.3);
+  border-radius: 14px;
+  padding: 14px 18px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 12px;
   opacity: 0;
-  transform: translateY(6px);
-  transition: all 0.25s;
+  transform: translateY(8px);
+  transition: opacity 0.3s, transform 0.3s;
 }
 
-.selected-info.visible {
+.selected-bar.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-.selected-text {
-  font-family: 'Space Mono', monospace;
-  font-size: 13px;
-  color: var(--green);
+.selected-left { display: flex; align-items: center; gap: 12px; }
+
+.selected-icon {
+  width: 38px;
+  height: 38px;
+  background: var(--yellow);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  color: #000;
+  flex-shrink: 0;
 }
 
-.selected-sub {
+.selected-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.selected-hint {
   font-size: 11px;
   color: var(--muted);
-  margin-top: 2px;
+  margin-top: 1px;
 }
 
-.copied-badge {
-  background: var(--green);
+.copied-pill {
+  background: var(--yellow);
   color: #000;
-  font-family: 'Space Mono', monospace;
   font-size: 9px;
   font-weight: 700;
-  letter-spacing: 0.1em;
-  padding: 4px 8px;
+  letter-spacing: 0.15em;
+  padding: 5px 10px;
   border-radius: 100px;
+  text-transform: uppercase;
 }
 
+/* REEV BUTTON */
 .reev-btn {
   width: 100%;
-  background: linear-gradient(135deg, #00b4d8, #0077b6);
+  background: var(--yellow);
   border: none;
-  border-radius: 14px;
-  color: white;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 17px;
-  font-weight: 600;
-  padding: 20px;
+  border-radius: 18px;
+  color: #000;
+  font-family: 'Outfit', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  padding: 22px;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: transform 0.12s, filter 0.2s;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
+  opacity: 0;
+  animation: fadeUp 0.5s 0.65s forwards;
+  box-shadow: 0 0 30px rgba(245,196,0,0.15);
 }
 
-.reev-btn:active { transform: scale(0.97); opacity: 0.85; }
+.reev-btn:active { transform: scale(0.97); filter: brightness(0.9); }
 .reev-btn svg { width: 22px; height: 22px; }
 
-.copy-toast {
+/* TOAST */
+.toast {
   position: fixed;
-  bottom: 30px;
+  bottom: 36px;
   left: 50%;
-  transform: translateX(-50%) translateY(80px);
-  background: var(--green);
+  transform: translateX(-50%) translateY(100px);
+  background: var(--yellow);
   color: #000;
-  font-family: 'Space Mono', monospace;
-  font-size: 12px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 13px;
   font-weight: 700;
-  letter-spacing: 0.1em;
-  padding: 12px 24px;
+  padding: 13px 26px;
   border-radius: 100px;
-  z-index: 1000;
-  transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+  z-index: 100;
+  transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
   white-space: nowrap;
   pointer-events: none;
+  box-shadow: 0 8px 30px rgba(245,196,0,0.3);
 }
 
-.copy-toast.show {
-  transform: translateX(-50%) translateY(0);
+.toast.show { transform: translateX(-50%) translateY(0); }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 ```
 
@@ -253,37 +255,35 @@ header {
 <div class="app">
 
   <header>
-    <div class="header-title">Langen CNC</div>
-    <div class="header-main">Laden ⚡</div>
-    <div class="header-sub">Station wählen → Code wird kopiert</div>
+    <div class="header-tag">Langen CNC · Wallbox</div>
+    <div class="header-title">Ladestation</div>
+    <div class="header-sub">Station antippen → Code kopiert → Reev starten</div>
   </header>
 
-  <div class="section-label">Ladestation</div>
-  <div class="card">
-    <div class="stations-grid" id="stationsGrid"></div>
+  <div class="section-label">Station wählen</div>
+  <div class="stations-grid" id="stationsGrid"></div>
 
-```
-<div class="selected-info" id="selectedInfo">
-  <div>
-    <div class="selected-text" id="selectedText">–</div>
-    <div class="selected-sub">Code in Zwischenablage</div>
-  </div>
-  <div class="copied-badge">KOPIERT</div>
-</div>
-
-<button class="reev-btn" onclick="openReev()">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-  </svg>
-  Reev öffnen
-</button>
-```
-
+  <div class="selected-bar" id="selectedBar">
+    <div class="selected-left">
+      <div class="selected-icon" id="selectedIcon">–</div>
+      <div>
+        <div class="selected-name" id="selectedName">–</div>
+        <div class="selected-hint">Code in Zwischenablage</div>
+      </div>
+    </div>
+    <div class="copied-pill">Kopiert</div>
   </div>
 
+  <button class="reev-btn" onclick="openReev()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+    </svg>
+    Reev starten
+  </button>
+
 </div>
 
-<div class="copy-toast" id="copyToast"></div>
+<div class="toast" id="toast"></div>
 
 <script>
 const STATIONS = [
@@ -305,8 +305,7 @@ function buildStations() {
     btn.className = "station-btn";
     btn.innerHTML = `
       <span class="station-num">${s.num}</span>
-      <span class="station-label">Station</span>
-      <span class="station-code">${s.code}</span>
+      <span class="station-tag">Station</span>
     `;
     btn.onclick = () => copyCode(s, btn);
     grid.appendChild(btn);
@@ -319,8 +318,7 @@ function copyCode(station, btn) {
   navigator.clipboard.writeText(station.code).catch(() => {
     const ta = document.createElement("textarea");
     ta.value = station.code;
-    ta.style.position = "fixed";
-    ta.style.opacity = "0";
+    ta.style.cssText = "position:fixed;opacity:0";
     document.body.appendChild(ta);
     ta.focus(); ta.select();
     document.execCommand("copy");
@@ -331,13 +329,14 @@ function copyCode(station, btn) {
   btn.classList.add("copied");
   lastBtn = btn;
 
-  document.getElementById("selectedText").textContent = `Station ${station.num} · ${station.code}`;
-  document.getElementById("selectedInfo").classList.add("visible");
+  document.getElementById("selectedIcon").textContent = station.num;
+  document.getElementById("selectedName").textContent = `Station ${station.num} · ${station.code}`;
+  document.getElementById("selectedBar").classList.add("visible");
 
-  const t = document.getElementById("copyToast");
-  t.textContent = `Station ${station.num} – ${station.code} ✓`;
+  const t = document.getElementById("toast");
+  t.textContent = `⚡ Station ${station.num} kopiert`;
   t.classList.add("show");
-  setTimeout(() => t.classList.remove("show"), 2500);
+  setTimeout(() => t.classList.remove("show"), 2200);
 }
 
 function openReev() {
