@@ -8,7 +8,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Laden">
   <meta name="theme-color" content="#0a0f1e">
-  <title>Ladestation</title>
+  <title>Laden ⚡</title>
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -18,8 +18,6 @@
       --accent: #00e5ff;
       --accent2: #7c3aed;
       --green: #00ff88;
-      --red: #ff4444;
-      --yellow: #ffd600;
       --text: #e2e8f0;
       --muted: #64748b;
       --border: rgba(0,229,255,0.15);
@@ -37,7 +35,6 @@ body {
   overflow-x: hidden;
 }
 
-/* Background grid */
 body::before {
   content: '';
   position: fixed;
@@ -58,12 +55,8 @@ body::before {
   padding: 0 16px 40px;
 }
 
-/* HEADER */
 header {
-  padding: 52px 0 24px;
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
+  padding: 52px 0 32px;
 }
 
 .header-title {
@@ -75,29 +68,16 @@ header {
 }
 
 .header-main {
-  font-size: 26px;
+  font-size: 32px;
   font-weight: 600;
   line-height: 1.1;
   margin-top: 4px;
 }
 
-.status-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--green);
-  box-shadow: 0 0 10px var(--green);
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
-}
-
-/* SECTIONS */
-.section {
-  margin-bottom: 20px;
+.header-sub {
+  font-size: 14px;
+  color: var(--muted);
+  margin-top: 8px;
 }
 
 .section-label {
@@ -106,11 +86,10 @@ header {
   letter-spacing: 0.18em;
   color: var(--muted);
   text-transform: uppercase;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   padding-left: 2px;
 }
 
-/* CARD */
 .card {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -118,6 +97,7 @@ header {
   padding: 18px;
   position: relative;
   overflow: hidden;
+  margin-bottom: 20px;
 }
 
 .card::before {
@@ -129,80 +109,24 @@ header {
   opacity: 0.4;
 }
 
-/* TIME SETTINGS */
-.time-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.time-input {
-  background: var(--surface2);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  color: var(--text);
-  font-family: 'Space Mono', monospace;
-  font-size: 22px;
-  padding: 10px 14px;
-  width: 120px;
-  outline: none;
-  transition: border-color 0.2s;
-}
-
-.time-input:focus {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(0,229,255,0.1);
-}
-
-.notif-btn {
-  flex: 1;
-  background: linear-gradient(135deg, var(--accent2), #4f46e5);
-  border: none;
-  border-radius: 10px;
-  color: white;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-  padding: 14px 12px;
-  cursor: pointer;
-  transition: opacity 0.2s, transform 0.1s;
-  letter-spacing: 0.02em;
-}
-
-.notif-btn:active { transform: scale(0.97); opacity: 0.85; }
-
-.notif-status {
-  margin-top: 10px;
-  font-size: 12px;
-  color: var(--muted);
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.notif-status.granted { color: var(--green); }
-.notif-status.denied { color: var(--red); }
-
-/* STATIONS */
 .stations-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
+  margin-bottom: 16px;
 }
 
 .station-btn {
   background: var(--surface2);
   border: 1.5px solid var(--border);
-  border-radius: 12px;
-  padding: 16px 8px;
+  border-radius: 14px;
+  padding: 20px 8px 16px;
   cursor: pointer;
   transition: all 0.15s;
   text-align: center;
-  position: relative;
-  overflow: hidden;
 }
 
-.station-btn:active { transform: scale(0.95); }
+.station-btn:active { transform: scale(0.94); }
 
 .station-btn.copied {
   border-color: var(--green);
@@ -211,12 +135,12 @@ header {
 
 .station-num {
   font-family: 'Space Mono', monospace;
-  font-size: 22px;
+  font-size: 28px;
   font-weight: 700;
   color: var(--accent);
   display: block;
   line-height: 1;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 
 .station-label {
@@ -224,17 +148,60 @@ header {
   color: var(--muted);
   letter-spacing: 0.1em;
   text-transform: uppercase;
+  display: block;
 }
 
-.station-code-preview {
+.station-code {
   font-size: 9px;
   font-family: 'Space Mono', monospace;
   color: var(--accent2);
   margin-top: 4px;
+  display: block;
   opacity: 0.8;
 }
 
-/* REEV BUTTON */
+.selected-info {
+  background: rgba(0,229,255,0.06);
+  border: 1px solid rgba(0,229,255,0.2);
+  border-radius: 10px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: all 0.25s;
+}
+
+.selected-info.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.selected-text {
+  font-family: 'Space Mono', monospace;
+  font-size: 13px;
+  color: var(--green);
+}
+
+.selected-sub {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.copied-badge {
+  background: var(--green);
+  color: #000;
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 4px 8px;
+  border-radius: 100px;
+}
+
 .reev-btn {
   width: 100%;
   background: linear-gradient(135deg, #00b4d8, #0077b6);
@@ -242,23 +209,20 @@ header {
   border-radius: 14px;
   color: white;
   font-family: 'DM Sans', sans-serif;
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 600;
-  padding: 18px;
+  padding: 20px;
   cursor: pointer;
   transition: all 0.2s;
-  letter-spacing: 0.02em;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
 }
 
-.reev-btn:active { transform: scale(0.98); opacity: 0.85; }
+.reev-btn:active { transform: scale(0.97); opacity: 0.85; }
+.reev-btn svg { width: 22px; height: 22px; }
 
-.reev-btn svg { width: 20px; height: 20px; }
-
-/* COPY FEEDBACK */
 .copy-toast {
   position: fixed;
   bottom: 30px;
@@ -281,178 +245,6 @@ header {
 .copy-toast.show {
   transform: translateX(-50%) translateY(0);
 }
-
-/* URLAUB */
-.urlaub-list {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-bottom: 12px;
-}
-
-.urlaub-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: var(--surface2);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 10px 14px;
-}
-
-.urlaub-dates {
-  font-family: 'Space Mono', monospace;
-  font-size: 12px;
-  color: var(--text);
-}
-
-.urlaub-del {
-  background: none;
-  border: none;
-  color: var(--red);
-  font-size: 18px;
-  cursor: pointer;
-  padding: 0 4px;
-  opacity: 0.7;
-  transition: opacity 0.2s;
-}
-
-.urlaub-del:active { opacity: 1; }
-
-.urlaub-add-row {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.date-input {
-  background: var(--surface2);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  color: var(--text);
-  font-family: 'Space Mono', monospace;
-  font-size: 12px;
-  padding: 8px 10px;
-  outline: none;
-  flex: 1;
-  min-width: 120px;
-  transition: border-color 0.2s;
-}
-
-.date-input:focus {
-  border-color: var(--accent);
-}
-
-.add-btn {
-  background: var(--accent);
-  border: none;
-  border-radius: 8px;
-  color: #000;
-  font-weight: 700;
-  font-size: 18px;
-  padding: 8px 14px;
-  cursor: pointer;
-  transition: opacity 0.2s;
-}
-
-.add-btn:active { opacity: 0.7; }
-
-/* DIVIDER */
-.divider {
-  height: 1px;
-  background: var(--border);
-  margin: 14px 0;
-}
-
-/* TODAY SKIP INFO */
-.skip-info {
-  font-size: 12px;
-  color: var(--yellow);
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 12px;
-  background: rgba(255,214,0,0.06);
-  border: 1px solid rgba(255,214,0,0.15);
-  border-radius: 8px;
-  margin-top: 10px;
-}
-
-/* SETTINGS ROW */
-.settings-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 4px 0;
-}
-
-.settings-label {
-  font-size: 14px;
-  color: var(--text);
-}
-
-.toggle {
-  position: relative;
-  width: 44px;
-  height: 24px;
-}
-
-.toggle input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.toggle-slider {
-  position: absolute;
-  inset: 0;
-  background: var(--surface2);
-  border: 1px solid var(--border);
-  border-radius: 100px;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.toggle-slider::before {
-  content: '';
-  position: absolute;
-  width: 18px;
-  height: 18px;
-  left: 2px;
-  top: 2px;
-  background: var(--muted);
-  border-radius: 50%;
-  transition: 0.2s;
-}
-
-.toggle input:checked + .toggle-slider {
-  background: rgba(0,229,255,0.2);
-  border-color: var(--accent);
-}
-
-.toggle input:checked + .toggle-slider::before {
-  transform: translateX(20px);
-  background: var(--accent);
-}
-
-/* INSTALL HINT */
-.install-hint {
-  background: rgba(124,58,237,0.1);
-  border: 1px solid rgba(124,58,237,0.25);
-  border-radius: 12px;
-  padding: 14px 16px;
-  font-size: 13px;
-  line-height: 1.5;
-  color: var(--muted);
-  text-align: center;
-}
-
-.install-hint strong {
-  color: var(--text);
-  display: block;
-  margin-bottom: 4px;
-}
 ```
 
   </style>
@@ -461,79 +253,39 @@ header {
 <div class="app">
 
   <header>
-    <div>
-      <div class="header-title">Langen CNC</div>
-      <div class="header-main">Laden ⚡</div>
-    </div>
-    <div class="status-dot" id="statusDot"></div>
+    <div class="header-title">Langen CNC</div>
+    <div class="header-main">Laden ⚡</div>
+    <div class="header-sub">Station wählen → Code wird kopiert</div>
   </header>
 
-  <!-- ERINNERUNG -->
-
-  <div class="section">
-    <div class="section-label">Erinnerungszeit</div>
-    <div class="card">
-      <div class="time-row">
-        <input type="time" class="time-input" id="reminderTime" value="08:30">
-        <button class="notif-btn" onclick="requestAndSchedule()">🔔 Aktivieren</button>
-      </div>
-      <div class="notif-status" id="notifStatus">⬤ &nbsp;Status wird geprüft...</div>
+  <div class="section-label">Ladestation</div>
+  <div class="card">
+    <div class="stations-grid" id="stationsGrid"></div>
 
 ```
-  <div id="todaySkipInfo" style="display:none" class="skip-info">
-    ⏸ Heute kein Laden (Urlaub / Wochenende)
+<div class="selected-info" id="selectedInfo">
+  <div>
+    <div class="selected-text" id="selectedText">–</div>
+    <div class="selected-sub">Code in Zwischenablage</div>
   </div>
+  <div class="copied-badge">KOPIERT</div>
 </div>
+
+<button class="reev-btn" onclick="openReev()">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+  </svg>
+  Reev öffnen
+</button>
 ```
 
-  </div>
-
-  <!-- LADESTATION WÄHLEN -->
-
-  <div class="section">
-    <div class="section-label">Station wählen → Code kopieren</div>
-    <div class="card">
-      <div class="stations-grid" id="stationsGrid"></div>
-      <div class="divider"></div>
-      <button class="reev-btn" onclick="openReev()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-        </svg>
-        Reev öffnen
-      </button>
-    </div>
-  </div>
-
-  <!-- URLAUB -->
-
-  <div class="section">
-    <div class="section-label">Urlaub / Abwesenheit</div>
-    <div class="card">
-      <div class="urlaub-list" id="urlaubList"></div>
-      <div class="urlaub-add-row">
-        <input type="date" class="date-input" id="urlaubVon" placeholder="Von">
-        <input type="date" class="date-input" id="urlaubBis" placeholder="Bis">
-        <button class="add-btn" onclick="addUrlaub()">+</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- INSTALL HINT (nur wenn nicht als PWA) -->
-
-  <div class="install-hint" id="installHint" style="display:none">
-    <strong>📲 Als App installieren</strong>
-    Teilen → „Zum Home-Bildschirm" tippen
   </div>
 
 </div>
 
-<!-- TOAST -->
-
-<div class="copy-toast" id="copyToast">Code kopiert ✓</div>
+<div class="copy-toast" id="copyToast"></div>
 
 <script>
-// ─── DATEN ───────────────────────────────────────────────────────────────────
-
 const STATIONS = [
   { num: 1, code: "E6583" },
   { num: 2, code: "E5SQZ" },
@@ -543,66 +295,28 @@ const STATIONS = [
   { num: 6, code: "EQZ6Y" },
 ];
 
-const REEV_URL = "reev://";
+let lastStation = null;
+let lastBtn = null;
 
-// ─── STATE ───────────────────────────────────────────────────────────────────
-let state = {
-  reminderTime: "08:30",
-  urlaub: [],         // [{von: "2024-07-15", bis: "2024-07-26"}]
-  notifGranted: false,
-};
-
-function loadState() {
-  try {
-    const saved = localStorage.getItem("ladestation_state");
-    if (saved) state = { ...state, ...JSON.parse(saved) };
-  } catch(e) {}
-}
-
-function saveState() {
-  try {
-    localStorage.setItem("ladestation_state", JSON.stringify(state));
-  } catch(e) {}
-}
-
-// ─── INIT ─────────────────────────────────────────────────────────────────────
-loadState();
-document.getElementById("reminderTime").value = state.reminderTime;
-buildStations();
-renderUrlaub();
-checkNotifStatus();
-checkTodaySkip();
-checkInstallHint();
-
-// ─── STATIONEN ───────────────────────────────────────────────────────────────
 function buildStations() {
   const grid = document.getElementById("stationsGrid");
-  grid.innerHTML = "";
   STATIONS.forEach(s => {
     const btn = document.createElement("button");
     btn.className = "station-btn";
     btn.innerHTML = `
       <span class="station-num">${s.num}</span>
       <span class="station-label">Station</span>
-      <span class="station-code-preview">${s.code}</span>
+      <span class="station-code">${s.code}</span>
     `;
     btn.onclick = () => copyCode(s, btn);
     grid.appendChild(btn);
   });
 }
 
-let lastCopied = null;
-
 function copyCode(station, btn) {
   lastStation = station;
-  navigator.clipboard.writeText(station.code).then(() => {
-    // Visual feedback
-    if (lastCopied) lastCopied.classList.remove("copied");
-    btn.classList.add("copied");
-    lastCopied = btn;
-    showToast(`Station ${station.num} – ${station.code} kopiert`);
-  }).catch(() => {
-    // Fallback für ältere Browser
+
+  navigator.clipboard.writeText(station.code).catch(() => {
     const ta = document.createElement("textarea");
     ta.value = station.code;
     ta.style.position = "fixed";
@@ -611,171 +325,26 @@ function copyCode(station, btn) {
     ta.focus(); ta.select();
     document.execCommand("copy");
     document.body.removeChild(ta);
-    showToast(`Station ${station.num} kopiert`);
   });
-}
 
-function showToast(msg) {
+  if (lastBtn) lastBtn.classList.remove("copied");
+  btn.classList.add("copied");
+  lastBtn = btn;
+
+  document.getElementById("selectedText").textContent = `Station ${station.num} · ${station.code}`;
+  document.getElementById("selectedInfo").classList.add("visible");
+
   const t = document.getElementById("copyToast");
-  t.textContent = msg + " ✓";
+  t.textContent = `Station ${station.num} – ${station.code} ✓`;
   t.classList.add("show");
   setTimeout(() => t.classList.remove("show"), 2500);
 }
 
-// ─── REEV ────────────────────────────────────────────────────────────────────
 function openReev() {
-  window.location.href = "https://apps.apple.com/app/id1458494031";
+  window.location.href = "shortcuts://run-shortcut?name=Reev";
 }
 
-// ─── NOTIFICATIONS ───────────────────────────────────────────────────────────
-function checkNotifStatus() {
-  const el = document.getElementById("notifStatus");
-  if (!("Notification" in window)) {
-    el.textContent = "⚠ Notifications nicht unterstützt";
-    el.className = "notif-status denied";
-    return;
-  }
-  if (Notification.permission === "granted") {
-    el.textContent = "⬤  Aktiv – Erinnerung läuft";
-    el.className = "notif-status granted";
-    state.notifGranted = true;
-    scheduleReminder();
-  } else if (Notification.permission === "denied") {
-    el.textContent = "✗  Blockiert – in iPhone-Einstellungen erlauben";
-    el.className = "notif-status denied";
-  } else {
-    el.textContent = "◯  Noch nicht aktiviert";
-    el.className = "notif-status";
-  }
-}
-
-async function requestAndSchedule() {
-  if (!("Notification" in window)) {
-    alert("Push-Benachrichtigungen werden auf deinem Gerät nicht unterstützt.\n\nHinweis: Safari auf iOS unterstützt dies nur wenn die Seite als PWA installiert ist (Teilen → Zum Homescreen).");
-    return;
-  }
-
-  // Zeit speichern
-  state.reminderTime = document.getElementById("reminderTime").value;
-  saveState();
-
-  const permission = await Notification.requestPermission();
-  checkNotifStatus();
-
-  if (permission === "granted") {
-    scheduleReminder();
-    showToast("Erinnerung gesetzt!");
-  } else {
-    alert("Benachrichtigungen wurden nicht erlaubt.\n\nEinstellungen → Safari → Mitteilungen → erlauben");
-  }
-}
-
-// Einfache Erinnerung via setTimeout bis zur nächsten Erinnerungszeit
-let reminderTimeout = null;
-
-function scheduleReminder() {
-  if (reminderTimeout) clearTimeout(reminderTimeout);
-  if (!state.notifGranted && Notification.permission !== "granted") return;
-
-  const now = new Date();
-  const [h, m] = state.reminderTime.split(":").map(Number);
-  const next = new Date(now);
-  next.setHours(h, m, 0, 0);
-  if (next <= now) next.setDate(next.getDate() + 1);
-
-  // Skip weekends & Urlaub
-  while (isSkipDay(next)) {
-    next.setDate(next.getDate() + 1);
-    next.setHours(h, m, 0, 0);
-  }
-
-  const ms = next - now;
-  reminderTimeout = setTimeout(() => {
-    fireNotification();
-    scheduleReminder(); // nächste planen
-  }, ms);
-}
-
-function fireNotification() {
-  if (Notification.permission !== "granted") return;
-  if (isSkipDay(new Date())) return;
-
-  const n = new Notification("⚡ Auto laden!", {
-    body: "Welche Ladestation? Tippen zum Öffnen.",
-    icon: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>",
-    badge: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>",
-    vibrate: [200, 100, 200],
-    requireInteraction: true,
-  });
-  n.onclick = () => { window.focus(); n.close(); };
-}
-
-// ─── URLAUB ───────────────────────────────────────────────────────────────────
-function addUrlaub() {
-  const von = document.getElementById("urlaubVon").value;
-  const bis = document.getElementById("urlaubBis").value;
-  if (!von || !bis) { alert("Von und Bis Datum angeben"); return; }
-  if (von > bis) { alert("Von muss vor Bis liegen"); return; }
-  state.urlaub.push({ von, bis });
-  saveState();
-  renderUrlaub();
-  checkTodaySkip();
-  document.getElementById("urlaubVon").value = "";
-  document.getElementById("urlaubBis").value = "";
-}
-
-function removeUrlaub(idx) {
-  state.urlaub.splice(idx, 1);
-  saveState();
-  renderUrlaub();
-  checkTodaySkip();
-}
-
-function renderUrlaub() {
-  const list = document.getElementById("urlaubList");
-  if (state.urlaub.length === 0) {
-    list.innerHTML = `<div style="font-size:13px;color:var(--muted);text-align:center;padding:8px 0">Kein Urlaub eingetragen</div>`;
-    return;
-  }
-  list.innerHTML = state.urlaub.map((u, i) => `
-    <div class="urlaub-item">
-      <div class="urlaub-dates">${formatDate(u.von)} → ${formatDate(u.bis)}</div>
-      <button class="urlaub-del" onclick="removeUrlaub(${i})">✕</button>
-    </div>
-  `).join("");
-}
-
-function formatDate(iso) {
-  const [y, m, d] = iso.split("-");
-  return `${d}.${m}.${y}`;
-}
-
-function isSkipDay(date) {
-  // Wochenende temporär deaktiviert für Tests
-  // const day = date.getDay();
-  // if (day === 0 || day === 6) return true;
-  const iso = date.toISOString().slice(0, 10);
-  return state.urlaub.some(u => iso >= u.von && iso <= u.bis);
-}
-
-function checkTodaySkip() {
-  const el = document.getElementById("todaySkipInfo");
-  el.style.display = isSkipDay(new Date()) ? "flex" : "none";
-}
-
-// ─── INSTALL HINT ─────────────────────────────────────────────────────────────
-function checkInstallHint() {
-  const isStandalone = window.matchMedia("(display-mode: standalone)").matches
-    || window.navigator.standalone;
-  document.getElementById("installHint").style.display = isStandalone ? "none" : "block";
-}
-
-// ─── TIME INPUT ──────────────────────────────────────────────────────────────
-document.getElementById("reminderTime").addEventListener("change", function() {
-  state.reminderTime = this.value;
-  saveState();
-  scheduleReminder();
-});
+buildStations();
 </script>
 
 </body>
