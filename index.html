@@ -624,8 +624,8 @@ function showToast(msg) {
 
 // ─── REEV ────────────────────────────────────────────────────────────────────
 function openReev() {
-  const code = lastStation ? "DE*ONE*" + lastStation.code : "";
-  window.location.href = "https://reev.one/" + code;
+  const code = lastStation ? lastStation.code : "E6583";
+  window.location.href = "https://reev.one/qr?evseid=" + code;
 }
 
 // ─── NOTIFICATIONS ───────────────────────────────────────────────────────────
