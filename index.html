@@ -594,6 +594,7 @@ function buildStations() {
 let lastCopied = null;
 
 function copyCode(station, btn) {
+  lastStation = station;
   navigator.clipboard.writeText(station.code).then(() => {
     // Visual feedback
     if (lastCopied) lastCopied.classList.remove("copied");
@@ -623,8 +624,11 @@ function showToast(msg) {
 
 // ─── REEV ────────────────────────────────────────────────────────────────────
 function openReev() {
-  window.location.href = "maps://";
+  // Reev Universal Link - öffnet die App wenn installiert
+  window.location.href = "https://charge.reev.com/" + (lastStation ? lastStation.code : "");
 }
+
+let lastStation = null;
 
 // ─── NOTIFICATIONS ───────────────────────────────────────────────────────────
 function checkNotifStatus() {
@@ -777,5 +781,4 @@ document.getElementById("reminderTime").addEventListener("change", function() {
 </script>
 
 </body>
-
 </html>
