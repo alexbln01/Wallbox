@@ -624,11 +624,9 @@ function showToast(msg) {
 
 // ─── REEV ────────────────────────────────────────────────────────────────────
 function openReev() {
-  // Reev Universal Link - öffnet die App wenn installiert
-  window.location.href = "https://charge.reev.com/" + (lastStation ? lastStation.code : "");
+  const code = lastStation ? "DE*ONE*" + lastStation.code : "";
+  window.location.href = "https://reev.one/" + code;
 }
-
-let lastStation = null;
 
 // ─── NOTIFICATIONS ───────────────────────────────────────────────────────────
 function checkNotifStatus() {
@@ -754,8 +752,9 @@ function formatDate(iso) {
 }
 
 function isSkipDay(date) {
-  const day = date.getDay();
-  if (day === 0 || day === 6) return true; // Wochenende
+  // Wochenende temporär deaktiviert für Tests
+  // const day = date.getDay();
+  // if (day === 0 || day === 6) return true;
   const iso = date.toISOString().slice(0, 10);
   return state.urlaub.some(u => iso >= u.von && iso <= u.bis);
 }
