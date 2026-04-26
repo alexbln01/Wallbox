@@ -12,7 +12,8 @@ from fastapi.responses import HTMLResponse
 import httpx, uvicorn
 
 app = FastAPI()
-app.add_middleware(CORSMiddleware, allow_origins=[”*”], allow_methods=[”*”], allow_headers=[”*”])
+STAR = chr(42)
+app.add_middleware(CORSMiddleware, allow_origins=[STAR], allow_methods=[STAR], allow_headers=[STAR])
 
 HTML = “””<!DOCTYPE html>
 
