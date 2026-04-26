@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-“””
-Wallbox Server - App + Reev Proxy
-Start: PYTHONPATH=/root/packages python3 wallbox.py
-Dann: http://192.168.178.50:8001
-“””
+
+# Wallbox Server - App + Reev Proxy
+
+# Start: PYTHONPATH=/root/packages python3 wallbox.py
+
+# Dann: http://192.168.178.50:8001
 
 from fastapi import FastAPI, Request, Response
 from fastapi.middleware.cors import CORSMiddleware
