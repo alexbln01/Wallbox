@@ -383,8 +383,9 @@ const STATIONS = [
   { num: 6, code: "EQZ6Y" },
 ];
 
-const TOKEN_URL = "https://auth.reev.com/realms/reev/protocol/openid-connect/token";
-const API_URL = "https://api.reev.com";
+const PROXY = "http://192.168.178.50:8001";
+const TOKEN_URL = `${PROXY}/auth/realms/reev/protocol/openid-connect/token`;
+const API_URL = PROXY;
 
 let accessToken = null;
 let refreshToken = null;
@@ -618,4 +619,4 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 
 </body>
-</html>
+</html>q
