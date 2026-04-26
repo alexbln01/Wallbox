@@ -87,7 +87,7 @@ HTML = “””<!DOCTYPE html>
 <body>
 <div class="app">
   <header>
-    <div class="header-tag">Langen CNC · Wallbox</div>
+    <div class="header-tag">Langen CNC  -  Wallbox</div>
     <div class="header-title">Ladestation</div>
     <div class="header-sub" id="headerSub">Bitte einloggen</div>
   </header>
@@ -100,7 +100,7 @@ HTML = “””<!DOCTYPE html>
     </div>
     <div class="input-group">
       <label>Passwort</label>
-      <input type="password" class="input-field" id="password" placeholder="••••••••" autocomplete="current-password">
+      <input type="password" class="input-field" id="password" placeholder="********" autocomplete="current-password">
     </div>
     <button class="login-btn" onclick="doLogin()">Einloggen</button>
     <div class="login-error" id="loginError"></div>
@@ -108,10 +108,10 @@ HTML = “””<!DOCTYPE html>
 
   <div id="mainScreen">
     <div class="user-bar">
-      <div style="font-size:13px;color:var(--muted)">✓ Eingeloggt</div>
+      <div style="font-size:13px;color:var(--muted)">OK Eingeloggt</div>
       <button class="logout-btn" onclick="doLogout()">Ausloggen</button>
     </div>
-    <div class="section-label">Station wählen & Laden starten</div>
+    <div class="section-label">Station waehlen & Laden starten</div>
     <div class="stations-grid" id="stationsGrid"></div>
     <div class="status-box" id="statusBox">
       <div class="status-dot"></div>
@@ -119,7 +119,7 @@ HTML = “””<!DOCTYPE html>
     </div>
     <button class="start-btn" id="startBtn" onclick="startCharging()" disabled>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-      <span class="btn-text">Station wählen</span>
+      <span class="btn-text">Station waehlen</span>
       <div class="spinner"></div>
     </button>
   </div>
@@ -153,7 +153,7 @@ function showLogin() {
 function showMain() {
   document.getElementById("loginScreen").style.display="none";
   document.getElementById("mainScreen").style.display="block";
-  document.getElementById("headerSub").textContent="Station wählen → Laden starten";
+  document.getElementById("headerSub").textContent="Station waehlen -> Laden starten";
 }
 
 async function doLogin() {
@@ -171,7 +171,7 @@ async function doLogin() {
       accessToken=data.access_token; refreshToken=data.refresh_token;
       localStorage.setItem("reev_tokens",JSON.stringify({access:accessToken,refresh:refreshToken}));
       showMain();
-    } else { showLoginError("Login fehlgeschlagen – E-Mail oder Passwort falsch"); }
+    } else { showLoginError("Login fehlgeschlagen - E-Mail oder Passwort falsch"); }
   } catch(e) { showLoginError("Verbindungsfehler"); }
   btn.textContent="Einloggen"; btn.disabled=false;
 }
@@ -226,8 +226,8 @@ async function startCharging() {
       {method:"POST",headers:{"Authorization":`Bearer ${accessToken}`,"Content-Type":"application/json"},
        body:JSON.stringify({evseId:selectedStation.code})});
     if (startRes.ok) {
-      setStatus(`⚡ Station ${selectedStation.num} lädt!`,"success");
-      btn.querySelector(".btn-text").textContent="Laden läuft ✓";
+      setStatus(`Blitz Station ${selectedStation.num} laedt!`,"success");
+      btn.querySelector(".btn-text").textContent="Laden laeuft OK";
     } else {
       const err=await startRes.json().catch(()=>({}));
       setStatus(err.message||"Fehler beim Starten","error");
@@ -294,5 +294,5 @@ return Response(content=r.content, status_code=r.status_code,
 media_type=r.headers.get(“content-type”,“application/json”))
 
 if **name** == “**main**”:
-print(“🔌 Wallbox Server läuft auf http://0.0.0.0:8001”)
+print(” Wallbox Server laeuft auf http://0.0.0.0:8001”)
 uvicorn.run(app, host=“0.0.0.0”, port=8001)
