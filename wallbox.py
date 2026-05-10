@@ -15,7 +15,7 @@ app = FastAPI()
 STAR = chr(42)
 app.add_middleware(CORSMiddleware, allow_origins=[STAR], allow_methods=[STAR], allow_headers=[STAR])
 
-HTML = “””<!DOCTYPE html>
+HTML = """<!DOCTYPE html>
 
 <html lang="de">
 <head>
@@ -273,27 +273,27 @@ document.addEventListener("DOMContentLoaded",()=>{
 </body>
 </html>"""
 
-@app.get(”/”, response_class=HTMLResponse)
+@app.get("/", response_class=HTMLResponse)
 async def serve_app():
-return HTML
+    return HTML
 
-@app.api_route(”/auth/{path:path}”, methods=[“GET”,“POST”,“PUT”,“DELETE”])
+@app.api_route("/auth/{path:path}", methods=["GET","POST","PUT","DELETE"])
 async def proxy_auth(path: str, request: Request):
-return await forward(request, f”https://auth.reev.com/{path}”)
+    return await forward(request, f"https://auth.reev.com/{path}")
 
-@app.api_route(”/api/{path:path}”, methods=[“GET”,“POST”,“PUT”,“DELETE”])
+@app.api_route("/api/{path:path}", methods=["GET","POST","PUT","DELETE"])
 async def proxy_api(path: str, request: Request):
-return await forward(request, f”https://api.reev.com/api/{path}”)
+    return await forward(request, f"https://api.reev.com/api/{path}")
 
 async def forward(request: Request, url: str):
-headers = {k:v for k,v in request.headers.items() if k.lower() not in [“host”,“content-length”]}
-params = dict(request.query_params)
-body = await request.body()
-async with httpx.AsyncClient(timeout=30) as c:
-r = await c.request(request.method, url, headers=headers, content=body, params=params)
-return Response(content=r.content, status_code=r.status_code,
-media_type=r.headers.get(“content-type”,“application/json”))
+    headers = {k:v for k,v in request.headers.items() if k.lower() not in ["host","content-length"]}
+    params = dict(request.query_params)
+    body = await request.body()
+    async with httpx.AsyncClient(timeout=30) as c:
+        r = await c.request(request.method, url, headers=headers, content=body, params=params)
+        return Response(content=r.content, status_code=r.status_code,
+                        media_type=r.headers.get("content-type","application/json"))
 
-if **name** == “**main**”:
-print(” Wallbox Server laeuft auf http://0.0.0.0:8001”)
-uvicorn.run(app, host=“0.0.0.0”, port=8001)
+if __name__ == "__main__":
+    print(" Wallbox Server laeuft auf http://0.0.0.0:8001")
+    uvicorn.run(app, host="0.0.0.0", port=8001)
