@@ -48,6 +48,11 @@ EV-Ladestation-App für **Langen CNC**. FastAPI-Server (`wallbox.py`) als Proxy 
 - Früher: exakt alle 15 Minuten (ioBroker/HA-Adapter)
 - Jetzt: event-getrieben vom Auto selbst
 
+## GitHub
+- Branch: `claude/wallbox-7ori4`
+- PR #1: https://github.com/alexbln01/Wallbox/pull/1
+- Commits auf diesem Branch aktualisieren den PR automatisch
+
 ## Offene Punkte
 - [ ] `watch_automation.log` auf 1,6 TB angewachsen → leeren: `> /root/watch_automation.log`
 - [ ] Log-Rotation für watch_automation.log einrichten
